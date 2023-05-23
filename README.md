@@ -1,5 +1,8 @@
 # yld
 
+## see README.md in /server folder
+- https://tiptap.dev/hocuspocus/getting-started
+
 ## Project setup
 ```
 npm install
