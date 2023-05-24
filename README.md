@@ -10,7 +10,8 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run server # launch local hocuspocus server
+npm run serve  # launch yld webapp in dev mode
 ```
 
 ### Compiles and minifies for production

@@ -1,7 +1,7 @@
 import { Hocuspocus } from "@hocuspocus/server";
 import debounce from "debounce";
-import { TiptapTransformer } from "@hocuspocus/transformer";
-import { writeFile } from "fs";
+//import { TiptapTransformer } from "@hocuspocus/transformer";
+import { writeFileSync } from "fs";
 
 let debounced;
 
@@ -20,11 +20,12 @@ const server = new Hocuspocus({
       // In this example we use the TiptapTransformer to get JSON from the given
       // ydoc.
       // const prosemirrorJSON = TiptapTransformer.fromYdoc(data.document);
-      console.log(data.document.getArray('tasks').toJSON())
+      let docJSON = data.document.getArray('tasks').toJSON()
+      console.log(docJSON)
       console.log(data.context.user)
       // Save your document. In a real-world app this could be a database query
       // a webhook or something else
-      // writeFile(`/path/to/your/documents/${data.documentName}.json`, prosemirrorJSON);
+      writeFileSync(`../documents/${data.documentName}.json`, JSON.stringify(docJSON));
 
       // Maybe you want to store the user who changed the document?
       // Guess what, you have access to your custom context from the

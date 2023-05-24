@@ -1,16 +1,25 @@
 <template>
   <div class="task">
-    <h1>TaskView</h1>
-    <input ref="task" @keyup.enter="add" />
-    <button @click="add">Add</button>
-    <TaskList />
+    <h1>TaskList</h1>
+   
+{{  taskList  }}
+
+<ul>
+  <li v-for="task in taskList" :key="task" >
+    <TaskListElement :task="task"  /> 
+
+  </li>
+</ul>
+
+
+
 
   </div>
 </template>
   
 <script>
 // @ is an alias to /src
-import TaskList from '@/views/TaskList.vue'
+import TaskListElement from '@/views/TaskListElement.vue'
 
 //import * as Y from "yjs";
 import { HocuspocusProvider } from "@hocuspocus/provider";
@@ -26,10 +35,7 @@ const provider = new HocuspocusProvider({
 const tasks = provider.document.getArray("tasks");
 
 // Listen for changes
-tasks.observe(() => {
- // console.log("tasks were modified");
-  console.log(tasks.toJSON())
-});
+
 
 // Add a new task
 //tasks.push(["buy milk"]);
@@ -37,15 +43,28 @@ tasks.observe(() => {
 
 
 export default {
-  name: 'TaskView',
+  name: 'TaskList',
   components: {
-     TaskList
+    TaskListElement
+  },
+  data(){
+    return {
+      taskList : []
+    }
+  },
+  created(){
+    tasks.observe(() => {
+ // console.log("tasks were modified");
+  
+  this.taskList = tasks.toJSON().reverse()
+  console.log(this.taskList)
+});
   },
   methods: {
-    add() {
+   /* add() {
       tasks.push([this.$refs.task.value]);
       this.$refs.task.value = ""
-    }
+    }*/
   }
 }
 </script>
