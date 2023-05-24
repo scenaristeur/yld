@@ -2,7 +2,7 @@
   <div class="task">
     <h1>TaskList</h1>
    
-{{  taskList  }}
+
 
 <ul>
   <li v-for="task in taskList" :key="task" >
@@ -10,6 +10,12 @@
 
   </li>
 </ul>
+
+
+<div v-if="debug==true">
+
+  {{  taskList  }}
+</div>
 
 
 
@@ -49,7 +55,8 @@ export default {
   },
   data(){
     return {
-      taskList : []
+      taskList : [],
+      debug: true
     }
   },
   created(){

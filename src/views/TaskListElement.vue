@@ -1,6 +1,6 @@
 <template>
   <div class="task">
-   {{  task }}
+    <button @click="edit">{{ task.name }}</button> , {{ task.created }} <button @click="remove">remove</button>
   </div>
 </template>
   
@@ -12,24 +12,32 @@ export default {
     // HelloWorld
   },
   props: ["task"],
-  data(){
+  data() {
     return {
-     // taskList : []
+      // taskList : []
     }
   },
-/*  created(){
-    tasks.observe(() => {
- // console.log("tasks were modified");
-  
-  this.taskList = tasks.toJSON()
-  console.log(this.taskList)
-});
-  },*/
+  /*  created(){
+      tasks.observe(() => {
+   // console.log("tasks were modified");
+    
+    this.taskList = tasks.toJSON()
+    console.log(this.taskList)
+  });
+    },*/
   methods: {
-   /* add() {
-      tasks.push([this.$refs.task.value]);
-      this.$refs.task.value = ""
-    }*/
+    edit() {
+      console.log("edit", this.task)
+     // this.$router.push({ path: '/edit/'+this.task.name })
+      this.$store.commit("setEditing", this.task)
+    },
+    remove() {
+      console.log("remove", this.task)
+    }
+    /* add() {
+       tasks.push([this.$refs.task.value]);
+       this.$refs.task.value = ""
+     }*/
   }
 }
 </script>
