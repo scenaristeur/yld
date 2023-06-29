@@ -1,6 +1,9 @@
 <template>
   <div class="task">
-    <button @click="edit">{{ task.name }}</button> , {{ task.created }} <button @click="remove">remove</button>
+    <button @click="edit">{{ task.name }}</button> ,
+    {{ task['@id'] }} <br>
+     {{ task.created }} 
+     <button @click="remove">remove</button>
   </div>
 </template>
   
